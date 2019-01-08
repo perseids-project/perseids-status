@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="vGfljNa5P4aUZKxs4kJslGkGrrWDhf45ax5imM1njCU=" name="csrf-token" />
+    <meta name='robots' content='noindex, nofollow' />
+    <meta name='SoSOL-Sparql-Endpoint' content='//services.perseids.org/fuseki/ds/query?query='/>
+    <title>
+      Perseids: welcome - index
+    </title>
+  	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/github.min.css"/>
+    <link href="/sosol/stylesheets/perseids.css?1546024160" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/sosol/stylesheets/perseids_additions.css?1546024160" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/sosol/javascripts/prototype.js?1546024160" type="text/javascript"></script>
+<script src="/sosol/javascripts/effects.js?1546024160" type="text/javascript"></script>
+<script src="/sosol/javascripts/dragdrop.js?1546024160" type="text/javascript"></script>
+<script src="/sosol/javascripts/controls.js?1546024160" type="text/javascript"></script>
+<script src="/sosol/javascripts/rails.js?1546024160" type="text/javascript"></script>
+<script src="/sosol/javascripts/application.js?1546024160" type="text/javascript"></script>
+    <script src="/sosol/javascripts/dashboard.js?1546024160" type="text/javascript"></script>
+  	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+    <script language="javascript" type="text/javascript">
+      jQuery.noConflict();
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-72072451-1', 'auto');
+      ga('send', 'pageview');
+  	</script>
+    <script type="text/javascript" async ='', src='//www.google-analytics.com/analytics.js'></script>
+    <script src="/sosol/javascripts/perseids-ld.js?1546024160" type="text/javascript"></script>
+    <script src="/sosol/javascripts/perseids-tools.js?1546024160" type="text/javascript"></script>
+    <script src="/sosol/javascripts/perseids-cite.js?1546024160" type="text/javascript"></script>
+    <script src="/sosol/javascripts/typeahead.bundle.js?1546024160" type="text/javascript"></script>
+    <script src="/sosol/javascripts/perseids-pages.js?1546024160" type="text/javascript"></script>
+    <script src="/sosol/javascripts/jquery.sticky-kit.min.js?1546024160" type="text/javascript"></script>
+    <script src="/sosol/javascripts/perseids-design.js?1546024160" type="text/javascript"></script>
+    <script type="text/javascript">
+      (function() {
+          if (typeof window.janrain !== 'object') window.janrain = {};
+          if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+
+          janrain.settings.tokenUrl = 'https://sosol.perseids.org/sosol/rpx/login_return';
+
+          function isReady() { janrain.ready = true; };
+          if (document.addEventListener) {
+            document.addEventListener("DOMContentLoaded", isReady, false);
+          } else {
+            window.attachEvent('onload', isReady);
+          }
+
+          var e = document.createElement('script');
+          e.type = 'text/javascript';
+          e.id = 'janrainAuthWidget';
+
+          if (document.location.protocol === 'https:') {
+            e.src = 'https://rpxnow.com/js/lib/perseus-sosol/engage.js';
+          } else {
+            e.src = 'http://widget-cdn.rpxnow.com/js/lib/perseus-sosol/engage.js';
+          }
+
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(e, s);
+      })();
+
+      // hack to override fixed width on janrain widget items
+      // that causes them to disappear when the browser zoom set to something
+      // other than default
+      function janrainWidgetOnload() {
+        jQuery( '.janrainPage .providers li' ).each(
+          function() {
+            var style = jQuery(this).attr("style");
+            style = style.replace(/width: \d+px !important;/,'width: 10rem;');
+            jQuery(this).attr("style",style);
+          }
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <div id="main-menu" class="off">
+      <div id="logo-container">
+	      <div class="logo"><a href="https://sosol.perseids.org/sosol/dashboard"><img alt="Perseids" src="/sosol/images/logo.png?1546024160" /></a></div>
+	      <a class="more" href="#"><img alt="More" src="/sosol/images/more.png?1546024160" /> /></a>
+	  </div>
+    <nav class='logins'>
+<ul>
+<li class='yahoo' href='#'>
+<a href="http://sites.tufts.edu/perseids" target="_blank">Read More</a>
+</li>
+<li class='aol' href='#'>
+<a href="http://sites.tufts.edu/perseids/publications/student-publications" target="_blank">Sample Publications </a>
+</li>
+<li class='google' href='#'>
+<a href="http://sites.tufts.edu/perseids/instructions/" target="_blank">Instructions</a>
+</li>
+</ul>
+</nav>
+
+	  <!--nav>
+	  	<div class="news">
+	  	</div>
+	  </nav-->
+	  <nav>
+	    <nav class='logins'>
+<ul>
+<li class='openid' href='#'>
+<a href="https://sosol.perseids.org/sosol/signin">Sign In</a>
+</li>
+</ul>
+</nav>
+
+	  </nav>
+    </div>
+    <div id="main-wrapper">
+      <div id="container">
+        <div class='sosolcard'>
+<p>The Perseids editor is a web-based, fully audited, version-controlled editing environment originally developed for the papyrological community but designed for applicability to other editing communities. It enables the collaborative editing of texts in a framework of rigorous and transparent peer-review and credit mechanisms and strong editorial oversight.</p>
+<p>To access the editor, please <a href="https://sosol.perseids.org/sosol/signin">sign in</a>. If you do not already have an account, signing in will guide you through the sign up process.</p>
+</div>
+
+      </div>
+    </div>
+  </body>
+</html>

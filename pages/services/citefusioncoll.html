@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>CITE Collections service</title>
+    <link type='text/css' rel='stylesheet' href='ctskit/css/normalize.css' title='CSS stylesheet' />
+    <link type='text/css' rel='stylesheet' href='ctskit/css/simple.css' title='CSS stylesheet' />
+    <link type='text/css' rel='stylesheet' href='ctskit/css/citeCollection.css' title='CSS stylesheet' />
+    <link type='text/css' rel='stylesheet' href='ctskit/css/tei.css' title='CSS stylesheet' />
+    <p class='menu'>CITE Collections: 
+      <a href='home'>home</a>
+    </p>
+  </head>
+  <body>
+    <div id='header'>
+      <p> </p>
+    </div>
+    <div>
+      <h1>CITE Collections service: test API</h1>
+      <h2>Metadata requests</h2>
+      <h3>GetCapabilities</h3>
+      <p>Applies to all collections; requires no further parameters</p>
+      <form action='api' method='GET'>
+        <input type='hidden' name='req' value='GetCapabilities' />
+        <input type='submit' value='Submit' />
+      </form>
+      <h3>GetCollectionSize</h3>
+      <p>Supply a URN identifying the collection; returns the number of objects in the collection.</p>
+      <form action='api' method='GET'>
+        <input type='hidden' name='req' value='GetCollectionSize' />
+        <input name='urn' value='urn:cite:botcar:sloane' />
+        <input type='submit' value='Submit' />
+      </form>
+      <h3>GetValidReff</h3>
+      <p>Supply a URN identifying the collection or object; returns valid reff  for all objects in the collection or all versions of the object.</p>
+      <form action='api' method='GET'>
+        <input type='hidden' name='req' value='GetValidReff' />
+        <input name='urn' value='urn:cite:botcar:sloane' />
+        <input type='submit' value='Submit' />
+      </form>
+      <h2>Retrieval methods</h2>
+      <h3>GetObject</h3>
+      <p>Supply a URN identifying the object; returns a CITE XML description of hte object.</p>
+      <form action='api' method='GET'>
+        <input type='hidden' name='req' value='GetObject' />
+        <input name='urn' value='urn:cite:botcar:sloane.381' />
+        <input type='submit' value='Submit' />
+      </form>
+      <h3>GetObjectPlus</h3>
+      <p>Supply a URN identifying the object; returns a CITE XML description of hte object, together with navigational information if the collection is ordered.</p>
+      <form action='api' method='GET'>
+        <input type='hidden' name='req' value='GetObjectPlus' />
+        <input name='urn' value='urn:cite:botcar:sloane.381' />
+        <input type='submit' value='Submit' />
+      </form>
+      <h2>Navigation of ordered collections</h2>
+      <p>These methods apply only to ordered collections.</p>
+      <h3>GetFirst</h3>
+      <p>Supply a URN identifying a collection; returns the URN identifying the first object in the collection.</p>
+      <form action='api' method='GET'>
+        <input type='hidden' name='req' value='GetFirst' />
+        <input name='urn' value='urn:cite:fufolio:CatesbyHS212' />
+        <input type='submit' value='Submit' />
+      </form>
+      <h3>GetLast</h3>
+      <p>Supply a URN identifying a collection; returns the URN identifying the last object in the collection.</p>
+      <form action='api' method='GET'>
+        <input type='hidden' name='req' value='GetLast' />
+        <input name='urn' value='urn:cite:fufolio:CatesbyHS212' />
+        <input type='submit' value='Submit' />
+      </form>
+      <h3>GetNext</h3>
+      <p>Supply a URN identifying an object; returns the CITE XML description of the following object.</p>
+      <form action='api' method='GET'>
+        <input type='hidden' name='req' value='GetNext' />
+        <input name='urn' value='urn:cite:fufolio:CatesbyHS212.008' />
+        <input type='submit' value='Submit' />
+      </form>
+      <h3>GetPrev</h3>
+      <p>Supply a URN identifying an object; returns the CITE XML description of the preceding object.</p>
+      <form action='api' method='GET'>
+        <input type='hidden' name='req' value='GetPrev' />
+        <input name='urn' value='urn:cite:fufolio:CatesbyHS212.008' />
+        <input type='submit' value='Submit' />
+      </form>
+      <h3>GetPrevNextUrn</h3>
+      <p>Supply a URN identifying an object; returns URNs identifying the preceding and following objects.</p>
+      <form action='api' method='GET'>
+        <input type='hidden' name='req' value='GetPrevNextUrn' />
+        <input name='urn' value='urn:cite:fufolio:CatesbyHS212.008' />
+        <input type='submit' value='Submit' />
+      </form>
+    </div>
+  </body>
+</html>

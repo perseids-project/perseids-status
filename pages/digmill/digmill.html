@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <title>The Digital Milliet Project 
+</title>
+        <link rel="stylesheet" media="screen" href="/static/css/milliet.css" />
+        <link rel='stylesheet' href="/bower/codemirror/lib/codemirror.css?version=1532374168.7785227" />
+        <link rel="stylesheet" href="/bower/jquery.markdownify/lib/jquery.markdownify.css?version=1.0.2" />
+        
+
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+
+        <script src="/bower/capitains-sparrow/dist/cts.min.js?version=1.2.3"></script>
+        <script src="/bower/capitains-sparrow.xslt/dist/jquery.cts.xslt.min.js?version=0.0.4"></script>
+        <script src="/bower/capitains-sparrow.service/dist/jquery.cts.service.min.js?version=0.0.3"></script>
+        
+
+        <link rel="icon" type="image/png" sizes="512x512" href="/static/favicon/favicon-512x512.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+        <link rel="manifest" href="/static/favicon/site.webmanifest">
+        <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#00aba9">
+        <meta name="theme-color" content="#ffffff">
+
+        <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="navbar" class="no-margin-bottom"><nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-dropdown">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" rel="home" href="/"> <img src="/static/img/digmilbanner.png"/> </a>
+        </div>
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-dropdown">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/commentary">Browse</a></li>
+                <li><a href="/about">About</a></li>
+                
+                    <li><a href="/oauth/login?next=https://digmill.perseids.org/">Login</a></li>
+                
+                <!-- Should set this elsewhere... -->
+                <!-- <li><a href="http://digmill.perseus.org/annotation">Add Record</a></li> -->
+            </ul>
+        </div><!-- /.navbar-collapse -->
+
+    </div><!-- /.container-fluid -->
+</nav></div>
+        <div id='wrap' class="">
+            
+    
+
+            <div id="content">
+
+<section id="search">
+    <div class="container">
+        <div class="line"><img class="logo" src="/static/img/logo_Text.png" /></div>
+        <h2 class="line">Combining Ancient Text And Image</h2>
+        <div class="line">
+            <form id="search_box" action="/search" method="GET">
+                <div class="select-container">
+                    <select id="search_dropdown" name="in">
+                        <option value="Author">Author</option>
+                        <option value="Title">Title</option>
+                        <option value="Tags">Tags</option>
+                    </select>
+                    <div class="carret"><i class="fa fa-caret-down"></i></div>
+                </div>
+
+                <input id="term" name="query" type="text" class="form-control" placeholder="Search for...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="line">
+            <a role="button" class="btn btn-milliet btn-browse" href="commentary">Browse</a>
+        </div>
+    </div>
+</section>
+
+<div class="container" id="explanation-text">
+    <p>Welcome to the home of the Digital Milliet! This project collects together digitized passages of Greek and Latin that are related to painting in the ancient world, creating a cross-referenced database that a user can search by author, title, or topic. For more information, please see our <a href="about">about page</a>.</p>
+</div>
+</div>
+            <footer id="footer" class="container">
+        <h4>The Digital Milliet would not be possible without the support of:</h4>
+        <div class="row">
+            <div class="col-md-4">
+                <a target="_blank" href="http://perseids.org/"> <img src="/static/img/perseids_banner31.png"/> </a>
+            </div>
+            <div class="col-md-4">
+                <a target="_blank" href="http://www.kressfoundation.org/"> <img src="/static/img/kress_logo.png"/></a>
+            </div>
+            <div class="col-md-4">
+                <a target="_blank" href="http://www.frqsc.gouv.qc.ca/"> <img src="/static/img/FRQSC.png"/></a>
+            </div>
+        </div>
+    </div>
+</footer>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,450 @@
+<!--
+  Copyright 2012-2015 The Alpheios Project, Ltd.
+  http://alpheios.net
+  
+  This file is part of Alpheios.
+  
+  Alpheios is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  
+  Alpheios is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head><title>Alpheios Alignment Editor - Align Text</title>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.0/css/foundation.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="static/css/alpheios/align.enter.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/apps/bower/capitains-sparrow.typeahead/src/css/jquery.cts.typeahead.css?version=0.0.4" />
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/apps/bower/handlebars/handlebars.min.js?version=3.0.0"></script>
+    <script src="/apps/bower/typeahead.js/dist/typeahead.bundle.min.js?version=0.10.5"></script>
+
+    <script src="/apps/bower/capitains-sparrow/dist/cts.min.js?version=1.2.3"></script>
+    <script src="/apps/bower/capitains-sparrow.typeahead/dist/jquery.cts.typeahead.min.js?version=0.0.4"></script>
+    <script src="/apps/bower/capitains-sparrow.xslt/dist/jquery.cts.xslt.min.js?version=0.0.4"></script>
+    <script src="/apps/bower/capitains-sparrow.service/dist/jquery.cts.service.min.js?version=0.0.3"></script>
+
+
+    <script language="javascript" type="text/javascript" src="static/js/alpheios/align.enter.js"></script>
+    <script language="javascript" type="text/javascript" src="static/js/alpheios/edit.utils.js"></script>
+
+    <!-- cookie and header name for CSRF session token  -->
+    <meta name="alpheios-sessionTokenName" content="csrftoken"/>
+    <meta name="alpheios-sessionHeaderName" content="X-CSRF-Token"/>
+    <meta name="cts_repos_url" content="https://cts.perseids.org/api/cts/" />
+    <meta name="cts_capabilities_url" content="https://cts.perseids.org/api/cts/?request=GetCapabilities"/>
+    <meta name="tokenization_service" content="https://services.perseids.org/llt/segtok" data-transform="/apps/static/xslt/segtok_to_align.xsl"/>
+
+    <!-- url to ping the server to set/refresh the CSRF cookie -->
+    <meta name="pingurl" content="https://sosol.perseids.org/sosol/dmm_api/ping" />
+    
+    <!-- url to POST to to create store a new treebank template -->
+    <meta name="url" content="https://sosol.perseids.org/sosol/dmm_api/create/item/AlignmentCite/DOC_REPLACE" />
+
+    <meta name="editorurl" content="https://sosol.perseids.org/alpheios/app/align-editsentence-perseids.xhtml?doc=REPLACE_DOC&amp;s=1 "/>
+    
+    <!--Arabic fonts-->
+        <link rel="stylesheet" media="screen" href="//openfontlibrary.org/face/lateef" type="text/css"/>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("input[name='l1-direction']").click(SetTextDir);
+        $("input[name='l2-direction']").click(SetTextDir);
+      });
+    </script>
+  </head>
+  <body>
+    <div class="alpheios-ignore">
+      <div id="alph-page-header">
+        <img src="static/img/alpheios/alpheios-transparent.png" alt="Alpheios"/>
+      </div>
+    </div>
+    <div>
+      <form name="input-form" action="">
+        <input type="hidden" name="l1"/>
+        <input type="hidden" name="l2"/>
+        <input type="hidden" name="collection" value="urn:cite:perseus:align"/>
+        <div class="row">
+        <fieldset id="align-enter-title"  class="large-9 columns">
+          <legend>Enter Metadata:</legend>
+          <label for="docname">Alignment title:<span class="hint small-3">e.g. "Alignment of Thuc. 1.1 in French and English" (title max length 100 chars restricted to alphanumerics and '.','_' and '-')</span>
+          <input placeholder="Enter a short title for your annotation" type="text" id="docname" name="docname" pattern="[\w \d-_\.]+" maxlength="100" size="100"></input>
+          </label>
+        </fieldset>
+        </div>
+        <div class="row">
+          <fieldset class="large-6 columns">
+            <legend>Enter Text in Language 1:</legend>
+            <div id="l1-dir-buttons">
+              <label>Text Direction:</label>
+              <input type="radio" id="l1-dir-ltr" name="l1-direction" value="ltr" checked="checked"/>
+              <label for="l1-dir-ltr">Left to Right</label>
+                <input type="radio" id="l1-dir-rtl" name="l1-direction" value="rtl"/>
+              <label for="l1-dir-rtl">Right to Left</label>
+            </div>
+           <div>
+             <textarea id="l1text" name="l1text" rows="10" cols="80" data-lnum="l1"
+             ></textarea>
+             <small class="error" id="l1texterror" style="display:none;">Invalid entry</small>
+           </div>
+           <div class="textdriver" id="l1textdriver" data-lnum="l1"></div>
+            <div>
+              <label for="l1uri">Search for a text</label>
+              <input placeholder="URI Identifer for this text. If a URL, text will be loaded from there. Plain text only supported." type="url" id="l1uri" name="l1uri" size="100" class="texturi" data-lnum="l1"></input>
+              <div id="l1worklist" class="worklist"><a target="_blank" href="https://cts.perseids.org">Available Works</a></div>
+            </div>
+            <div class="ownuri">
+              <label for="own_uri_l1">Enter your own text URI :</label>
+              <div class="row collapse">
+                <div class="small-10 columns">
+                  <input type="text" placeholder="" id="own_uri_l1" />
+                </div>
+                <div class="small-2 columns">
+                  <a href="#" data-lnum="l1" class="own_uri_trigger button postfix">Select</a>
+                </div>
+              </div>
+              <small class="error" id="own_uri_l1_error" style="display:none;">Invalid entry</small>
+           </div>
+          </fieldset>
+          <fieldset class="large-6 columns">
+          <legend>Enter Text in Language 2:</legend>
+          <div id="l2-dir-buttons">
+            <label>Text Direction:</label>
+            <input type="radio" id="l2-dir-ltr" name="l2-direction" value="ltr" checked="checked"/>
+            <label for="l2-dir-ltr">Left to Right</label>
+            <input type="radio" id="l2-dir-rtl" name="l2-direction" value="rtl"/>
+            <label for="l2-dir-rtl">Right to Left</label>
+          </div>
+          <textarea id="l2text" name="l2text" rows="10" cols="80" data-lnum="l2"
+            ></textarea>
+          <small class="error" id="l2texterror" style="display:none;">Invalid entry</small>
+          <div class="textdriver" id="l2textdriver" data-lnum="l2"></div>
+          <div>
+            <label for="l2uri">Search for a text</label>
+            <input placeholder="URI Identifer for this text. If a URL, text will be loaded from there. Plain text only supported." type="url" id="l2uri" name="l2uri" size="100" class="texturi" data-lnum="l2"></input>
+            <div id="l2worklist" class="worklist"><a target="_blank" href="https://cts.perseids.org">Available Works</a></div>
+          </div>
+          <div class="ownuri">
+            <label for="own_uri_l2">Enter your own text URI :</label>
+            <div class="row collapse">
+              <div class="small-10 columns">
+                <input type="text" placeholder="" id="own_uri_l2" />
+              </div>
+              <div class="small-2 columns">
+                <a href="#" data-lnum="l2" class="own_uri_trigger button postfix">Select</a>
+              </div>
+            </div>
+            <small class="error" id="own_uri_l2_error" style="display:none;">Invalid entry</small>
+         </div>
+        </fieldset>
+        </div>
+        <div class="row">
+          <fieldset class="large-6 columns">
+            <div class="row">
+            <label for="select_l1" class="large-9 columns">Language 1:
+            <select name="select_l1" id="select_l1">
+              <option value="eng">English</option>
+              <option value="lat">Latin</option>
+              <option value="grc">Greek (Ancient -1453)</option>
+              <option value="ara">Arabic</option>
+              <option value="zh">Chinese</option>
+              <option value="afr">Afrikaans</option>
+              <option value="akk">Akkadian</option>
+              <option value="sqi">Albanian</option>
+              <option value="amh">Amharic</option>
+              <option value="arg">Aragonese</option>
+              <option value="arc">Aramaic (Imperial- 700 BC-300 BC)</option>
+              <option value="sam">Aramaic (Samaritan)</option>
+              <option value="hye">Armenian</option>
+              <option value="ast">Asturian (Bable, Leonese)</option>
+              <option value="ave">Avestan</option>
+              <option value="aze">Azerbaijani</option>
+              <option value="eus">Basque</option>
+              <option value="ben">Bengali</option>
+              <option value="ber">Berber</option>
+              <option value="bos">Bosnian</option>
+              <option value="bre">Breton</option>
+              <option value="bul">Bulgarian</option>
+              <option value="chu">Bulgarian (Old, Old Church Slavonic)</option>
+              <option value="mya">Burmese</option>
+              <option value="cat">Catalan</option>
+              <option value="chg">Chagatai</option>
+              <option value="cop">Coptic</option>
+              <option value="cor">Cornish</option>
+              <option value="hrv">Croatian</option>
+              <option value="ces">Czech</option>
+              <option value="dan">Danish</option>
+              <option value="nld">Dutch (Flemish)</option>
+              <option value="dum">Dutch (Middle, 1050-1350)</option>
+              <option value="egy">Egyptian (Ancient)</option>
+              <option value="elx">Elamite</option>
+              <option value="enm">English (Middle, 1100-1500)</option>
+              <option value="ang">English (Old, 450-1100)</option>
+              <option value="est">Estonian</option>
+              <option value="fin">Finnish</option>
+              <option value="fra">French</option>
+              <option value="frm">French (Middle, 1400-1600)</option>
+              <option value="fro">French (Old, 842c. 1400)</option>
+              <option value="gez">Ge'ez</option>
+              <option value="kat">Georgian</option>
+              <option value="nds">German (Low, Low Saxon)</option>
+              <option value="gmh">German (Middle-High, 1050-1500)</option>
+              <option value="goh">German (Old-High, 750-1050)</option>
+              <option value="deu">German</option>
+              <option value="got">Gothic</option>
+              <option value="ell">Greek (Modern, 1453-)</option>
+              <option value="guj">Gujarati</option>
+              <option value="heb">Hebrew</option>
+              <option value="hin">Hindi</option>
+              <option value="hit">Hittite</option>
+              <option value="hun">Hungarian</option>
+              <option value="isl">Icelandic</option>
+              <option value="ind">Indonesian</option>
+              <option value="gle">Irish (Modern)</option>
+              <option value="mga">Irish (Middle 900-1200)</option>
+              <option value="sga">Irish (Old, to 900)</option>
+              <option value="ita">Italian</option>
+              <option value="jpn">Japanese</option>
+              <option value="jav">Javanese</option>
+              <option value="kan">Kannada</option>
+              <option value="khm">Khmer (Central)</option>
+              <option value="kor">Korean</option>
+              <option value="kur">Kurdish</option>
+              <option value="lad">Ladino</option>
+              <option value="lit">Lithuanian</option>
+              <option value="msa">Malay</option>
+              <option value="mar">Marathi</option>
+              <option value="new">Nepal Bhasa (Newari)</option>
+              <option value="nep">Nepali</option>
+              <option value="nwc">Newari (Classical)</option>
+              <option value="non">Norse (Old)</option>
+              <option value="nor">Norwegian</option>
+              <option value="nob">Norwegian (Bokmål)</option>
+              <option value="nno">Norwegian (Nynorsk)</option>
+              <option value="oss">Ossetian</option>
+              <option value="pal">Pahlavi (Middle Persian)</option>
+              <option value="pli">Pali</option>
+              <option value="pus">Pashto</option>
+              <option value="fas">Persian (Farsi)</option>
+              <option value="peo">Persian (Old, 600-400 BC)</option>
+              <option value="phn">Phoenician</option>
+              <option value="pol">Polish</option>
+              <option value="por">Portuguese</option>
+              <option value="pra">Prakrit</option>
+              <option value="pro">Provençal (Occitan, -1500)</option>
+              <option value="pan">Punjabi (Panjabi)</option>
+              <option value="raj">Rajasthani</option>
+              <option value="ron">Romanian</option>
+              <option value="rom">Romany</option>
+              <option value="rus">Russian</option>
+              <option value="san">Sanskrit</option>
+              <option value="sco">Scots</option>
+              <option value="gla">Scottish (Gaelic)</option>
+              <option value="srp">Serbian</option>
+              <option value="scn">Sicilian</option>
+              <option value="snd">Sindhi</option>
+              <option value="sin">Sinhalese (Sinhala)</option>
+              <option value="slk">Slovak</option>
+              <option value="slv">Slovenian</option>
+              <option value="sog">Sogdian</option>
+              <option value="spa">Spanish (Castilian)</option>
+              <option value="sux">Sumerian</option>
+              <option value="swa">Swahili</option>
+              <option value="swe">Swedish</option>
+              <option value="gsw">Swiss German (Alsatian)</option>
+              <option value="syc">Syriac (Classical)</option>
+              <option value="syr">Syriac (Northeastern, Neo-Aramaic)</option>
+              <option value="tgl">Tagalog</option>
+              <option value="tgk">Tajik</option>
+              <option value="tam">Tamil</option>
+              <option value="tat">Tatar</option>
+              <option value="tel">Telugu</option>
+              <option value="tha">Thai</option>
+              <option value="bod">Tibetan</option>
+              <option value="tur">Turkish (Modern)</option>
+              <option value="ota">Turkish (Ottoman, 1500-1928 )</option>
+              <option value="tuk">Turkmen</option>
+              <option value="uga">Ugaritic</option>
+              <option value="ukr">Ukainian</option>
+              <option value="urd">Urdu</option>
+              <option value="uzb">Uzbek</option>
+              <option value="vie">Vietnamese</option>
+              <option value="wln">Walloon</option>
+              <option value="cym">Welsh</option>
+              <option value="yid">Yiddish</option>
+            </select>
+            </label>
+            <label for="other_l1" class="large-3 columns">
+              Other*:
+              <input type="text" id="other_l1" name="other_l1" size="3"/>
+            </label>
+            </div>
+            <div class="row">
+              <small id="l1-advanced-options-toggle" class="advanced-options-toggle" data-lnum="l1">Click  to toggle advanced options...</small>
+              <div id="advanced-options-l1" class="advanced-options" style="display: none;" data-lnum="l1"></div>
+            </div>
+          </fieldset>
+          <fieldset class="large-6 columns">
+            <div class="row">
+              <label for="select_l2" class="large-9 columns">Language 2:
+            <select name="select_l2" id="select_l2">
+              <option value="eng">English</option>
+              <option value="lat">Latin</option>
+              <option value="grc">Greek (Ancient -1453)</option>
+              <option value="ara">Arabic</option>
+              <option value="zh">Chinese</option>
+              <option value="afr">Afrikaans</option>
+              <option value="akk">Akkadian</option>
+              <option value="sqi">Albanian</option>
+              <option value="amh">Amharic</option>
+              <option value="arg">Aragonese</option>
+              <option value="arc">Aramaic (Imperial- 700 BC-300 BC)</option>
+              <option value="sam">Aramaic (Samaritan)</option>
+              <option value="hye">Armenian</option>
+              <option value="ast">Asturian (Bable, Leonese)</option>
+              <option value="ave">Avestan</option>
+              <option value="aze">Azerbaijani</option>
+              <option value="eus">Basque</option>
+              <option value="ben">Bengali</option>
+              <option value="ber">Berber</option>
+              <option value="bos">Bosnian</option>
+              <option value="bre">Breton</option>
+              <option value="bul">Bulgarian</option>
+              <option value="chu">Bulgarian (Old, Old Church Slavonic)</option>
+              <option value="mya">Burmese</option>
+              <option value="cat">Catalan</option>
+              <option value="chg">Chagatai</option>
+              <option value="cop">Coptic</option>
+              <option value="cor">Cornish</option>
+              <option value="hrv">Croatian</option>
+              <option value="ces">Czech</option>
+              <option value="dan">Danish</option>
+              <option value="nld">Dutch (Flemish)</option>
+              <option value="dum">Dutch (Middle, 1050-1350)</option>
+              <option value="egy">Egyptian (Ancient)</option>
+              <option value="elx">Elamite</option>
+              <option value="enm">English (Middle, 1100-1500)</option>
+              <option value="ang">English (Old, 450-1100)</option>
+              <option value="est">Estonian</option>
+              <option value="fin">Finnish</option>
+              <option value="fra">French</option>
+              <option value="frm">French (Middle, 1400-1600)</option>
+              <option value="fro">French (Old, 842-c. 1400)</option>
+              <option value="gez">Ge'ez</option>
+              <option value="kat">Georgian</option>
+              <option value="nds">German (Low, Low Saxon)</option>
+              <option value="gmh">German (Middle-High, 1050-1500)</option>
+              <option value="goh">German (Old-High, 750-1050)</option>
+              <option value="deu">German</option>
+              <option value="got">Gothic</option>
+              <option value="ell">Greek (Modern, 1453-)</option>
+              <option value="guj">Gujarati</option>
+              <option value="heb">Hebrew</option>
+              <option value="hin">Hindi</option>
+              <option value="hit">Hittite</option>
+              <option value="hun">Hungarian</option>
+              <option value="isl">Icelandic</option>
+              <option value="ind">Indonesian</option>
+              <option value="gle">Irish (Modern)</option>
+              <option value="mga">Irish (Middle 900-1200)</option>
+              <option value="sga">Irish (Old, to 900)</option>
+              <option value="ita">Italian</option>
+              <option value="jpn">Japanese</option>
+              <option value="jav">Javanese</option>
+              <option value="kan">Kannada</option>
+              <option value="khm">Khmer (Central)</option>
+              <option value="kor">Korean</option>
+              <option value="kur">Kurdish</option>
+              <option value="lad">Ladino</option>
+              <option value="lit">Lithuanian</option>
+              <option value="msa">Malay</option>
+              <option value="mar">Marathi</option>
+              <option value="new">Nepal Bhasa (Newari)</option>
+              <option value="nep">Nepali</option>
+              <option value="nwc">Newari (Classical)</option>
+              <option value="non">Norse (Old)</option>
+              <option value="nor">Norwegian</option>
+              <option value="nob">Norwegian (Bokmål)</option>
+              <option value="nno">Norwegian (Nynorsk)</option>
+              <option value="oss">Ossetian</option>
+              <option value="pal">Pahlavi (Middle Persian)</option>
+              <option value="pli">Pali</option>
+              <option value="pus">Pashto</option>
+              <option value="fas">Persian (Farsi)</option>
+              <option value="peo">Persian (Old, 600-400 BC)</option>
+              <option value="phn">Phoenician</option>
+              <option value="pol">Polish</option>
+              <option value="por">Portuguese</option>
+              <option value="pra">Prakrit</option>
+              <option value="pro">Provençal (Occitan, -1500)</option>
+              <option value="pan">Punjabi (Panjabi)</option>
+              <option value="raj">Rajasthani</option>
+              <option value="ron">Romanian</option>
+              <option value="rom">Romany</option>
+              <option value="rus">Russian</option>
+              <option value="san">Sanskrit</option>
+              <option value="sco">Scots</option>
+              <option value="gla">Scottish (Gaelic)</option>
+              <option value="srp">Serbian</option>
+              <option value="scn">Sicilian</option>
+              <option value="snd">Sindhi</option>
+              <option value="sin">Sinhalese (Sinhala)</option>
+              <option value="slk">Slovak</option>
+              <option value="slv">Slovenian</option>
+              <option value="sog">Sogdian</option>
+              <option value="spa">Spanish (Castilian)</option>
+              <option value="sux">Sumerian</option>
+              <option value="swa">Swahili</option>
+              <option value="swe">Swedish</option>
+              <option value="gsw">Swiss German (Alsatian)</option>
+              <option value="syc">Syriac (Classical)</option>
+              <option value="syr">Syriac (Northeastern, Neo-Aramaic)</option>
+              <option value="tgl">Tagalog</option>
+              <option value="tgk">Tajik</option>
+              <option value="tam">Tamil</option>
+              <option value="tat">Tatar</option>
+              <option value="tel">Telugu</option>
+              <option value="tha">Thai</option>
+              <option value="bod">Tibetan</option>
+              <option value="tur">Turkish (Modern)</option>
+              <option value="ota">Turkish (Ottoman, 1500-1928 )</option>
+              <option value="tuk">Turkmen</option>
+              <option value="uga">Ugaritic</option>
+              <option value="ukr">Ukainian</option>
+              <option value="urd">Urdu</option>
+              <option value="uzb">Uzbek</option>
+              <option value="vie">Vietnamese</option>
+              <option value="wln">Walloon</option>
+              <option value="cym">Welsh</option>
+              <option value="yid">Yiddish</option>
+                </select>
+                </label>
+              <label for="other_l2" class="large-3 columns">
+                Other*:
+                <input type="text" id="other_l2" name="other_l2" size="3"/>
+              </label>
+            </div>
+            <div class="row">
+              <small id="l2-advanced-options-toggle" class="advanced-options-toggle" data-lnum="l2">Click  to toggle advanced options...</small>
+              <div id="advanced-options-l2" class="advanced-options" style="display: none;" data-lnum="l2"></div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="row" style="font-size: smaller;"><p class="hint">*Please use ISO 639-2 or ISO 639-3 three-letter codes for any other languages</p></div>
+        
+      </form> 
+      <form name="submit-form" action="" onsubmit="EnterSentence(event); return false;">
+        <div><button type="submit" style="float: right; width:100px;">Align</button></div>
+      </form>
+    </div>
+  </body>
+</html>
