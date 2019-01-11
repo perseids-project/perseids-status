@@ -1,4 +1,20 @@
+require 'rspec/expectations'
 require 'rspec/its'
 
-# Require every Ruby file in the ../lib directory
-Dir[File.join(__dir__, '..', 'lib', '**', '*.rb')].each { |file| require file }
+require 'fileutils'
+require 'pathname'
+require 'tmpdir'
+require 'webmock/rspec'
+
+require 'support/factory'
+require 'support/fixture'
+require 'support/helpers'
+
+require 'perseids_status'
+
+RSpec::Matchers.define :be_the_same_path_as do |expected|
+  match do |actual|
+    Pathname.new(expected).cleanpath == Pathname.new(actual).cleanpath
+  end
+end
+RSpec::Matchers.alias_matcher :the_same_path_as, :be_the_same_path_as

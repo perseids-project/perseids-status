@@ -1,0 +1,35 @@
+[
+  {
+    "location": "comparison-time",
+    "fruit": {
+      "apple": "ok",
+      "pear": "diff"
+    },
+    "vegetable": {
+      "carrot": "ok",
+      "onion": "wc"
+    }
+  },
+  {
+    "location": "comparison-2000-02-02T0000000Z",
+    "fruit": {
+      "apple": "ok",
+      "pear": "diff"
+    },
+    "vegetable": {
+      "carrot": "ok",
+      "onion": "wc"
+    }
+  },
+  {
+    "location": "comparison-2000-01-02T0000000Z",
+    "fruit": {
+      "apple": "ok",
+      "pear": "ok"
+    },
+    "vegetable": {
+      "carrot": "ok",
+      "onion": "ok"
+    }
+  }
+]
