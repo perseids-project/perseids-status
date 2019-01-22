@@ -1,0 +1,83 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'optparse'
+
+require_relative 'lib/perseids_status'
+
+options = {
+  version: 'current',
+  compare: true,
+  count: 10,
+  email: false,
+  file: 'config.json',
+  quiet: false,
+  record: false,
+  request: true,
+  save: true,
+}
+
+OptionParser.new do |opts| # rubocop:disable Metrics/BlockLength
+  opts.banner = 'Usage: test.rb [options]'
+
+  opts.on('-v', '--version VERSION', 'Version to compare ("comparison-<date>" or "current", default "current")') do |v|
+    if v != 'current'
+      options[:version] = v
+      options[:request] = false
+    end
+  end
+
+  opts.on('-c', '--count NUMBER', OptionParser::DecimalInteger, 'Number of records to save (default 10)') do |c|
+    options[:count] = c
+  end
+
+  opts.on('-e', '--email EMAIL', 'Email address to send reports to (default false)') do |e|
+    options[:email] = e
+  end
+
+  opts.on('-f', '--file FILE', 'Configuration file location (default config.json)') do |f|
+    options[:file] = f
+  end
+
+  opts.on('-q', '--quiet', 'Save files but do not print results (default false)') do
+    options[:quiet] = true
+  end
+
+  opts.on('-r', '--record', 'Record responses instead of running comparison (default false)') do
+    options[:record] = true
+    options[:compare] = false
+  end
+
+  opts.on('-u', '--unsaved', 'Perform comparison but do not save results (default false)') do
+    options[:save] = false
+  end
+
+  opts.on('-h', '--help', 'Show this message') do
+    options[:help] = true
+
+    puts opts
+    exit
+  end
+end.parse!
+
+config = JSON.parse(File.read(options[:file]), symbolize_names: true)
+status = PerseidsStatus.new(config)
+
+if options[:request]
+  status.make_requests!
+
+  if options[:record]
+    status.record_canonical!
+  else
+    status.record_comparison!
+  end
+end
+
+if options[:compare]
+  status.read_canonical!
+  status.read_comparison!(options[:version])
+
+  status.write_json_and_html!(options[:count]) if options[:save]
+  status.print_results unless options[:quiet]
+  status.send_email!(options[:email]) if options[:email]
+end

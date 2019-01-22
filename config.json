@@ -1,0 +1,85 @@
+{
+  "annotation": {
+    "arethusa": "http://arethusa.perseids.org/app",
+    "arethusa_configs": "http://arethusa-configs.perseids.org/vortex.json",
+    "arethusa_configs_list": {
+      "url": "http://arethusa-configs.perseids.org/",
+      "compare": "wc"
+    },
+    "arethusa_dist": {
+      "url": "http://arethusa.perseids.org/dist/arethusa.min.css",
+      "compare": "wc"
+    },
+    "bodin": "http://pubs.perseids.org/bodin/",
+    "imgcollect": "http://jackson.perseids.org/apps/imgcollect/index.html",
+    "imgup": "http://imgup.perseids.org/upload-mnt/2015/JAN/080461031_1.jpg",
+    "jackson": "http://jackson.perseids.org/data/upload/urn:cite:perseus:upload.irt1",
+    "joth": "http://joth.perseids.org/joth.html#index",
+    "marmotta": "http://annotation.perseids.org/marmotta/sparql/select?query=SELECT+%3Fg+%3Fs+%3Fp+%3Fo+WHERE+%7B+values+%3Fg+%7B+%3Chttp%3A%2F%2Fannotation.perseids.org%2Fmarmotta%2Fldp%2Fb3JnLnBlcnNlaWRzL1RvcGljL1RyZWViYW5rQ2l0ZUlkZW50aWZpZXIvdXJuOmN0czpsYXRpbkxpdDpwaGkwNjkwLnBoaTAwMy5wZXJzZXVzLWxhdDI%3D%3E+%7D+GRAPH+%3Fg+%7B+%3Fs+%3Fp+%3Fo+%7D+%7D",
+    "pca_alignment": "http://pca.perseids.org/apps/alignment",
+    "pca_treebank": "http://pca.perseids.org/apps/treebank",
+    "pubs": "http://pubs.perseids.org/alignment-prototypes/poetics/align.902.1.xhtml",
+    "www": "https://www.perseids.org/"
+  },
+  "ci": {
+    "ci": "http://ci.perseids.org",
+    "ci_pull": "http://ci.perseids.org/repo/OpenGreekAndLatin/First1KGreek/829"
+  },
+  "collections": {
+    "collections": "http://collections.perseids.org/",
+    "collections_element": "http://collections.perseids.org/collections/org.perseids%2FTopic%2FTreebankCiteIdentifier%2Furn%3Acts%3AlatinLit%3Aphi0690.phi003.perseus-lat2"
+  },
+  "digmill": {
+    "digmill": {
+      "url": "https://digmill.perseids.org/",
+      "compare": "wc"
+    },
+    "digmill_entry": {
+      "url": "https://digmill.perseids.org/commentary/100",
+      "compare": "wc"
+    }
+  },
+  "morph": {
+    "morph_grk": {
+      "url": "http://morph.perseids.org/analysis/word?lang=grc&engine=morpheusgrc&word=i(stori/hs",
+      "compare": "wc"
+    },
+    "morph_lat": {
+      "url": "https://morph.perseids.org/analysis/word?lang=lat&engine=morpheuslat&word=novarum",
+      "compare": "wc"
+    }
+  },
+  "other": {
+    "arethusa_treebank": "https://www.perseids.org/tools/arethusa/app/#/perseids?chunk=1&doc=57532",
+    "imgup_redirect": "http://www.perseids.org/imgup/upload-mnt/2015/JAN/080461031_1.jpg",
+    "jackson_redirect": "http://www.perseids.org/jackson/data/upload/urn:cite:perseus:upload.irt1",
+    "proxy": {
+      "url": "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=a)/sth",
+      "compare": "wc"
+    },
+    "sosol_treebank": "http://www.perseids.org/tools/arethusa/app/#/perseids?chunk=1&doc=28581"
+  },
+  "services": {
+    "capitains": {
+      "url": "https://cts.perseids.org/read/greekLit/tlg0317/tlg002/1st1K-grc1/2-44",
+      "compare": "wc"
+    },
+    "capitains_api": "https://cts.perseids.org/api/cts/?request=GetPassage&urn=urn:cts:greekLit:tlg0317.tlg002.1st1K-grc1:2-44",
+    "cite_mapper": "http://services.perseids.org/cite_mapper/find_cite?cite=urn:cts:greekLit:tlg0085.tlg004.perseus-grc2",
+    "citefusioncoll": "http://services.perseids.org/collections/testPage",
+    "fghproxy_gh": "http://fgh.perseids.org/flask-github-proxy/perseids_syriaca/",
+    "fuseki": {
+      "url": "http://fuseki.perseids.org/fuseki/ds/query?query=select%20%3Fresult%20%3Furl%20where%20%7B%3Fresult%20%3Chttp%3A%2F%2Fwww.cidoc-crm.org%2Fcidoc-crm%2FP138_represents%3E%20%3Curn%3Acts%3AlatinLit%3Aphi1038.phi001%3E%20.%3Fresult%20%3Chttp%3A%2F%2Fwww.homermultitext.org%2Fcite%2Frdf%2FbelongsTo%3E%20%3Fcollection%20.%20%3Fcollection%20%3Chttp%3A%2F%2Fdata.perseus.org%2Frdfvocab%2Fcite%2FimageServer%3E%20%3Furl%20.%7D&format=json",
+      "compare": "wc"
+    },
+    "llt": "http://services.perseids.org/llt//tokenize?text=homo%20mittit.",
+    "sg": "http://services.perseids.org/sg/body.1_div1.4_div2.14.html"
+  },
+  "sosol": {
+    "sosol": {
+      "url": "https://sosol.perseids.org/sosol/",
+      "compare": "wc"
+    },
+    "sosol_align": "http://sosol.perseids.org/alpheios/xq/align-getlist.xq?doc=align.3326.1"
+  }
+}
