@@ -8,12 +8,12 @@ Makes requests to various Perseids endpoints to check the status of the applicat
 
 ## How to Use
 
-Running the script `ruby test` will request the URLs, print the output to STDOUT and save the results to `index.json` and `index.html`.
+Running the script `ruby status` will request the URLs, print the output to STDOUT and save the results to `index.json` and `index.html`.
 
-Running `ruby test --record` will make the requests and save the responses in the `pages/` directory.
-Future runs of `test` will compare against these responses.
+Running `ruby status --record` will make the requests and save the responses in the `pages/` directory.
+Future runs of `status` will compare against these responses.
 
-See `ruby test --help` for more options.
+See `ruby status --help` for more options.
 
 ## Requirements
 
