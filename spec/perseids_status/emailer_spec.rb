@@ -1,6 +1,9 @@
 RSpec.describe PerseidsStatus::Emailer do
   let(:json) { Factory.json }
   let(:email) { 'test@example.com' }
+  let(:server) { 'your.smtp.server' }
+  let(:port) { 25 }
+  let(:domain) { 'mail.from.domain' }
   let(:mailer) { double }
   let(:message) do
     "From: Perseids Status <status@perseids.org>\n" \
@@ -10,10 +13,14 @@ RSpec.describe PerseidsStatus::Emailer do
     "vegetable/onion doesn't match: ok -> wc\n"
   end
 
-  subject(:emailer) { PerseidsStatus::Emailer.new(json, email) }
+  subject(:emailer) { PerseidsStatus::Emailer.new(json, email, server, port, domain) }
 
   before do
-    allow(Net::SMTP).to receive(:start).with('localhost').and_yield(mailer)
+    allow(Net::SMTP).to receive(:start).with(
+      'your.smtp.server',
+      25,
+      'mail.from.domain',
+    ).and_yield(mailer)
   end
 
   describe '#send!' do

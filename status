@@ -15,6 +15,9 @@ options = {
   record: false,
   request: true,
   save: true,
+  email_server: 'localhost',
+  email_port: 25,
+  email_domain: 'localhost',
 }
 
 OptionParser.new do |opts| # rubocop:disable Metrics/BlockLength
@@ -33,6 +36,18 @@ OptionParser.new do |opts| # rubocop:disable Metrics/BlockLength
 
   opts.on('-e', '--email EMAIL', 'Email address to send reports to (default false)') do |e|
     options[:email] = e
+  end
+
+  opts.on('-s', '--email-server SERVER', 'SMTP server address (default localhost)') do |s|
+    options[:email_server] = s
+  end
+
+  opts.on('-p', '--email-port PORT', OptionParser::DecimalInteger, 'SMTP server port (default 25)') do |p|
+    options[:email_port] = p
+  end
+
+  opts.on('-d', '--email-domain DOMAIN', 'SMTP HELO domain (default localhost)') do |d|
+    options[:email_domain] = d
   end
 
   opts.on('-f', '--file FILE', 'Configuration file location (default config.json)') do |f|
@@ -79,5 +94,12 @@ if options[:compare]
 
   status.write_json_and_html!(options[:count]) if options[:save]
   status.print_results unless options[:quiet]
-  status.send_email!(options[:email]) if options[:email]
+  if options[:email]
+    status.send_email!(
+      options[:email],
+      options[:email_server],
+      options[:email_port],
+      options[:email_domain],
+    )
+  end
 end

@@ -68,8 +68,8 @@ class PerseidsStatus
     self
   end
 
-  def send_email!(email)
-    Emailer.new(request_map, email).send!
+  def send_email!(email, server, port, domain)
+    Emailer.new(request_map, email, server, port, domain).send!
 
     self
   end

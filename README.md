@@ -22,7 +22,7 @@ See `ruby status --help` for more options.
 ## Installation
 
 * `gem install bundler`
-* `bundler install`
+* `bundle install`
 
 ## Running tests
 

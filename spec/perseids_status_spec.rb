@@ -142,15 +142,18 @@ RSpec.describe PerseidsStatus do
   describe '#send_email!' do
     let(:emailer) { instance_double(PerseidsStatus::Emailer) }
     let(:email) { 'test@example.com' }
+    let(:server) { 'your.smtp.server' }
+    let(:port) { 25 }
+    let(:domain) { 'mail.from.domain' }
 
     before do
-      allow(PerseidsStatus::Emailer).to receive(:new).with(request_map, email).and_return(emailer)
+      allow(PerseidsStatus::Emailer).to receive(:new).with(request_map, email, server, port, domain).and_return(emailer)
     end
 
     it 'sends the email' do
       expect(emailer).to receive(:send!).with(no_args)
 
-      expect(status.send_email!(email)).to eq(status)
+      expect(status.send_email!(email, server, port, domain)).to eq(status)
     end
   end
 end

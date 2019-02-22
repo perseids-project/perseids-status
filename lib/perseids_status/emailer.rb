@@ -4,22 +4,25 @@ class PerseidsStatus
   class Emailer
     FROM = 'status@perseids.org'
 
-    def initialize(json, email)
+    def initialize(json, email, server, port, domain)
       @json = json
       @email = email
+      @server = server
+      @port = port
+      @domain = domain
     end
 
     def send!
       return if diff_strings.empty?
 
-      Net::SMTP.start('localhost') do |smtp|
+      Net::SMTP.start(server, port, domain) do |smtp|
         smtp.send_message(message, FROM, email)
       end
     end
 
     private
 
-    attr_reader :json, :email
+    attr_reader :json, :email, :server, :port, :domain
 
     def diff_strings
       return @diff_strings if @diff_strings
