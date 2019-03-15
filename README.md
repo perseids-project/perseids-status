@@ -17,7 +17,7 @@ See `ruby status --help` for more options.
 
 ## Requirements
 
-* `ruby ~2.5.1`
+* `ruby ~2.4.2`
 
 ## Installation
 
