@@ -24,7 +24,23 @@ class PerseidsStatus
       requests.each { |r| yield r }
     end
 
+    def get(test, name)
+      request_dictionary[test][name]
+    end
+
     private
+
+    def request_dictionary
+      return @request_dictionary if @request_dictionary
+
+      @request_dictionary = {}
+      each do |request|
+        @request_dictionary[request.test] ||= {}
+        @request_dictionary[request.test][request.name] = request
+      end
+
+      @request_dictionary
+    end
 
     attr_reader :requests
   end

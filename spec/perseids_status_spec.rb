@@ -123,7 +123,7 @@ RSpec.describe PerseidsStatus do
     before do
       allow(Time).to receive_message_chain(:now, :strftime).with('%FT%H%M%LZ').and_return('time')
       allow(PerseidsStatus::JSONReader).to receive(:new).with(no_args).and_return(json_reader_before, json_reader_after)
-      allow(PerseidsStatus::HTMLWriter).to receive(:new).with(:json_after).and_return(html_writer)
+      allow(PerseidsStatus::HTMLWriter).to receive(:new).with(:json_after, request_map).and_return(html_writer)
       allow(PerseidsStatus::JSONWriter)
         .to receive(:new).with(request_map, count, 'comparison-time', :json_before).and_return(json_writer)
     end

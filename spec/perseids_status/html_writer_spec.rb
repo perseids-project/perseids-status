@@ -1,8 +1,9 @@
 RSpec.describe PerseidsStatus::HTMLWriter do
   let(:json) { Factory.json_fixture_json }
+  let(:request_map) { Factory.request_map }
   let(:html_fixture) { Fixture.html_fixture }
 
-  subject(:writer) { PerseidsStatus::HTMLWriter.new(json) }
+  subject(:writer) { PerseidsStatus::HTMLWriter.new(json, request_map) }
 
   before do
     allow(PerseidsStatus::Utils).to receive(:write_file!)

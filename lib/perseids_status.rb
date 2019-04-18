@@ -89,7 +89,7 @@ class PerseidsStatus
     reader = JSONReader.new
     reader.read!
 
-    HTMLWriter.new(reader.json).write!
+    HTMLWriter.new(reader.json, request_map).write!
   end
 
   attr_reader :request_map, :canonical_path, :comparison_path

@@ -33,4 +33,15 @@ RSpec.describe PerseidsStatus::RequestMap do
       expect(results).to eq([1, 2, 3])
     end
   end
+
+  describe '#get' do
+    subject(:request_map) { Factory.request_map }
+
+    it 'gets the request based on the test and name' do
+      request = request_map.get(:vegetable, :carrot)
+
+      expect([request.url, request.test, request.name, request.compare])
+        .to eq(['https://carrot.example.com', :vegetable, :carrot, 'wc'])
+    end
+  end
 end

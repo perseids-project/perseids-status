@@ -2,8 +2,9 @@ require 'erb'
 
 class PerseidsStatus
   class HTMLWriter
-    def initialize(json, path = 'index.html')
+    def initialize(json, request_map, path = 'index.html')
       @json = json
+      @request_map = request_map
       @path = File.join(__dir__, '..', '..', path)
     end
 
@@ -13,7 +14,7 @@ class PerseidsStatus
 
     private
 
-    attr_reader :json, :path
+    attr_reader :json, :request_map, :path
 
     def content
       ERB.new(template).result(binding)
@@ -71,10 +72,10 @@ class PerseidsStatus
                         <% pages.each do |name, result| %>
                           <tr>
                             <td class="check" width="25px"><%= (result == 'ok') ? '✅' : '❌' %></td>
-                            <td class="name" width="200px"><%= name %></td>
+                            <td class="name" width="200px"><a href="<%= request_map.get(test, name).url %>"><%= name %></a></td>
                             <td class="status" width="30px"><%= result %></td>
                             <td class="source" width="30px">
-                              <a href="pages/<%= test %>/<%= name %>.html" width="30px">old</a>
+                              <a href="canonical/<%= test %>/<%= name %>.html" width="30px">old</a>
                             </td>
                             <td class="compare">
                               <a href="<%= location %>/<%= test %>/<%= name %>.html">new</a>
