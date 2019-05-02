@@ -69,7 +69,9 @@ class PerseidsStatus
   end
 
   def send_email!(email, server, port, domain)
-    Emailer.new(request_map, email, server, port, domain).send!
+    reader = JSONReader.new
+    reader.read!
+    Emailer.new(reader.json, email, server, port, domain).send!
 
     self
   end

@@ -145,12 +145,15 @@ RSpec.describe PerseidsStatus do
     let(:server) { 'your.smtp.server' }
     let(:port) { 25 }
     let(:domain) { 'mail.from.domain' }
+    let(:json_reader) { instance_double(PerseidsStatus::JSONReader, json: :json) }
 
     before do
-      allow(PerseidsStatus::Emailer).to receive(:new).with(request_map, email, server, port, domain).and_return(emailer)
+      allow(PerseidsStatus::JSONReader).to receive(:new).with(no_args).and_return(json_reader)
+      allow(PerseidsStatus::Emailer).to receive(:new).with(:json, email, server, port, domain).and_return(emailer)
     end
 
     it 'sends the email' do
+      expect(json_reader).to receive(:read!).with(no_args)
       expect(emailer).to receive(:send!).with(no_args)
 
       expect(status.send_email!(email, server, port, domain)).to eq(status)
