@@ -7,7 +7,7 @@
       "compare": "wc"
     },
     "arethusa_dist": {
-      "url": "http://arethusa.perseids.org/dist/arethusa.min.css",
+      "url": "https://arethusa.perseids.org/dist/arethusa.min.css",
       "compare": "wc"
     },
     "beta-code": "https://apps.perseids.org/beta-code/",
@@ -58,13 +58,13 @@
   },
   "other": {
     "arethusa_treebank": "https://www.perseids.org/tools/arethusa/app/#/perseids?chunk=1&doc=57532",
-    "imgup_redirect": "http://www.perseids.org/imgup/upload-mnt/2015/JAN/080461031_1.jpg",
-    "jackson_redirect": "http://www.perseids.org/jackson/data/upload/urn:cite:perseus:upload.irt1",
+    "imgup_redirect": "https://www.perseids.org/imgup/upload-mnt/2015/JAN/080461031_1.jpg",
+    "jackson_redirect": "https://www.perseids.org/jackson/data/upload/urn:cite:perseus:upload.irt1",
     "proxy": {
       "url": "http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=a)/sth",
       "compare": "wc"
     },
-    "sosol_treebank": "http://www.perseids.org/tools/arethusa/app/#/perseids?chunk=1&doc=28581"
+    "sosol_treebank": "https://www.perseids.org/tools/arethusa/app/#/perseids?chunk=1&doc=28581"
   },
   "services": {
     "capitains": {
