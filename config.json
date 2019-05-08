@@ -11,7 +11,7 @@
       "compare": "wc"
     },
     "beta-code": "https://apps.perseids.org/beta-code/",
-    "bodin": "http://pubs.perseids.org/bodin/",
+    "bodin": "https://pubs.perseids.org/bodin/",
     "darcy": "https://apps.perseids.org/darcy/",
     "demixer": "https://apps.perseids.org/demixer/",
     "greek-conjugator": "https://apps.perseids.org/greek-conjugator/",
@@ -24,7 +24,7 @@
     "pca_alignment": "http://pca.perseids.org/apps/alignment",
     "pca_treebank": "http://pca.perseids.org/apps/treebank",
     "polytonic": "https://apps.perseids.org/polytonic/",
-    "pubs": "http://pubs.perseids.org/alignment-prototypes/poetics/align.902.1.xhtml",
+    "pubs": "https://pubs.perseids.org/alignment-prototypes/poetics/align.902.1.xhtml",
     "woodhouse": "https://apps.perseids.org/woodhouse/",
     "www": "https://www.perseids.org/"
   },
@@ -87,6 +87,6 @@
       "url": "https://sosol.perseids.org/sosol/",
       "compare": "wc"
     },
-    "sosol_align": "http://sosol.perseids.org/alpheios/xq/align-getlist.xq?doc=align.3326.1"
+    "sosol_align": "https://sosol.perseids.org/alpheios/xq/align-getlist.xq?doc=align.3326.1"
   }
 }
