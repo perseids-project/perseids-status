@@ -33,8 +33,8 @@
     "ci_pull": "http://ci.perseids.org/repo/OpenGreekAndLatin/First1KGreek/829"
   },
   "collections": {
-    "collections": "http://collections.perseids.org/",
-    "collections_element": "http://collections.perseids.org/collections/org.perseids%2FTopic%2FTreebankCiteIdentifier%2Furn%3Acts%3AlatinLit%3Aphi0690.phi003.perseus-lat2"
+    "collections": "https://collections.perseids.org/",
+    "collections_element": "https://collections.perseids.org/collections/org.perseids%2FTopic%2FTreebankCiteIdentifier%2Furn%3Acts%3AlatinLit%3Aphi0690.phi003.perseus-lat2"
   },
   "digmill": {
     "digmill": {
