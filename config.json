@@ -48,7 +48,7 @@
   },
   "morph": {
     "morph_grk": {
-      "url": "http://morph.perseids.org/analysis/word?lang=grc&engine=morpheusgrc&word=i(stori/hs",
+      "url": "https://morph.perseids.org/analysis/word?lang=grc&engine=morpheusgrc&word=i(stori/hs",
       "compare": "wc"
     },
     "morph_lat": {
