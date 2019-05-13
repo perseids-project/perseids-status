@@ -1,9 +1,9 @@
 {
   "annotation": {
     "arethusa": "http://arethusa.perseids.org/app",
-    "arethusa_configs": "http://arethusa-configs.perseids.org/vortex.json",
+    "arethusa_configs": "https://arethusa-configs.perseids.org/vortex.json",
     "arethusa_configs_list": {
-      "url": "http://arethusa-configs.perseids.org/",
+      "url": "https://arethusa-configs.perseids.org/",
       "compare": "wc"
     },
     "arethusa_dist": {
