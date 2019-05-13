@@ -18,7 +18,7 @@
     "imgcollect": "http://jackson.perseids.org/apps/imgcollect/index.html",
     "imgup": "http://imgup.perseids.org/upload-mnt/2015/JAN/080461031_1.jpg",
     "jackson": "http://jackson.perseids.org/data/upload/urn:cite:perseus:upload.irt1",
-    "joth": "http://joth.perseids.org/joth.html#index",
+    "joth": "https://joth.perseids.org/joth.html#index",
     "lsj": "https://apps.perseids.org/lsj/",
     "marmotta": "http://annotation.perseids.org/marmotta/sparql/select?query=SELECT+%3Fg+%3Fs+%3Fp+%3Fo+WHERE+%7B+values+%3Fg+%7B+%3Chttp%3A%2F%2Fannotation.perseids.org%2Fmarmotta%2Fldp%2Fb3JnLnBlcnNlaWRzL1RvcGljL1RyZWViYW5rQ2l0ZUlkZW50aWZpZXIvdXJuOmN0czpsYXRpbkxpdDpwaGkwNjkwLnBoaTAwMy5wZXJzZXVzLWxhdDI%3D%3E+%7D+GRAPH+%3Fg+%7B+%3Fs+%3Fp+%3Fo+%7D+%7D",
     "pca_alignment": "http://pca.perseids.org/apps/alignment",
