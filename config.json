@@ -15,9 +15,9 @@
     "darcy": "https://apps.perseids.org/darcy/",
     "demixer": "https://apps.perseids.org/demixer/",
     "greek-conjugator": "https://apps.perseids.org/greek-conjugator/",
-    "imgcollect": "http://jackson.perseids.org/apps/imgcollect/index.html",
-    "imgup": "http://imgup.perseids.org/upload-mnt/2015/JAN/080461031_1.jpg",
-    "jackson": "http://jackson.perseids.org/data/upload/urn:cite:perseus:upload.irt1",
+    "imgcollect": "https://jackson.perseids.org/apps/imgcollect/index.html",
+    "imgup": "https://imgup.perseids.org/upload-mnt/2015/JAN/080461031_1.jpg",
+    "jackson": "https://jackson.perseids.org/data/upload/urn:cite:perseus:upload.irt1",
     "joth": "https://joth.perseids.org/joth.html#index",
     "lsj": "https://apps.perseids.org/lsj/",
     "marmotta": "http://annotation.perseids.org/marmotta/sparql/select?query=SELECT+%3Fg+%3Fs+%3Fp+%3Fo+WHERE+%7B+values+%3Fg+%7B+%3Chttp%3A%2F%2Fannotation.perseids.org%2Fmarmotta%2Fldp%2Fb3JnLnBlcnNlaWRzL1RvcGljL1RyZWViYW5rQ2l0ZUlkZW50aWZpZXIvdXJuOmN0czpsYXRpbkxpdDpwaGkwNjkwLnBoaTAwMy5wZXJzZXVzLWxhdDI%3D%3E+%7D+GRAPH+%3Fg+%7B+%3Fs+%3Fp+%3Fo+%7D+%7D",
@@ -76,7 +76,7 @@
     "citefusioncoll": "http://services.perseids.org/collections/testPage",
     "fghproxy_gh": "http://fgh.perseids.org/flask-github-proxy/perseids_syriaca/",
     "fuseki": {
-      "url": "http://fuseki.perseids.org/fuseki/ds/query?query=select%20%3Fresult%20%3Furl%20where%20%7B%3Fresult%20%3Chttp%3A%2F%2Fwww.cidoc-crm.org%2Fcidoc-crm%2FP138_represents%3E%20%3Curn%3Acts%3AlatinLit%3Aphi1038.phi001%3E%20.%3Fresult%20%3Chttp%3A%2F%2Fwww.homermultitext.org%2Fcite%2Frdf%2FbelongsTo%3E%20%3Fcollection%20.%20%3Fcollection%20%3Chttp%3A%2F%2Fdata.perseus.org%2Frdfvocab%2Fcite%2FimageServer%3E%20%3Furl%20.%7D&format=json",
+      "url": "https://fuseki.perseids.org/fuseki/ds/query?query=select%20%3Fresult%20%3Furl%20where%20%7B%3Fresult%20%3Chttp%3A%2F%2Fwww.cidoc-crm.org%2Fcidoc-crm%2FP138_represents%3E%20%3Curn%3Acts%3AlatinLit%3Aphi1038.phi001%3E%20.%3Fresult%20%3Chttp%3A%2F%2Fwww.homermultitext.org%2Fcite%2Frdf%2FbelongsTo%3E%20%3Fcollection%20.%20%3Fcollection%20%3Chttp%3A%2F%2Fdata.perseus.org%2Frdfvocab%2Fcite%2FimageServer%3E%20%3Furl%20.%7D&format=json",
       "compare": "wc"
     },
     "llt": "http://services.perseids.org/llt//tokenize?text=homo%20mittit.",
