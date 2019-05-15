@@ -29,8 +29,8 @@
     "www": "https://www.perseids.org/"
   },
   "ci": {
-    "ci": "http://ci.perseids.org",
-    "ci_pull": "http://ci.perseids.org/repo/OpenGreekAndLatin/First1KGreek/829"
+    "ci": "https://ci.perseids.org",
+    "ci_pull": "https://ci.perseids.org/repo/OpenGreekAndLatin/First1KGreek/829"
   },
   "collections": {
     "collections": "https://collections.perseids.org/",
