@@ -47,6 +47,14 @@
       "compare": "wc"
     }
   },
+  "dts": {
+    "dts": {
+      "url": "https://dts.perseids.org/collections"
+    },
+    "dts_entry": {
+      "url": "https://dts.perseids.org//documents?id=urn:cts:greekLit:tlg0016.tlg001.perseus-grc2&ref=1.1.0"
+    }
+  },
   "morph": {
     "morph_grk": {
       "url": "https://morph.perseids.org/analysis/word?lang=grc&engine=morpheusgrc&word=i(stori/hs",
