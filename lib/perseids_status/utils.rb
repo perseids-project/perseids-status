@@ -6,6 +6,8 @@ class PerseidsStatus
   module Utils
     def self.curl(url)
       Net::HTTP.get_response(URI.parse(url)).body
+    rescue StandardError => e
+      e.to_s
     end
 
     def self.write_file!(path, content)

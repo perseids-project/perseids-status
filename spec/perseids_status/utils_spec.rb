@@ -7,6 +7,16 @@ RSpec.describe PerseidsStatus::Utils do
     it 'returns the response body of the request' do
       expect(PerseidsStatus::Utils.curl('https://www.example.com')).to eq('hello world')
     end
+
+    context 'get_response raises an exception' do
+      before do
+        allow(Net::HTTP).to receive(:get_response).and_raise('some error')
+      end
+
+      it 'returns the error text' do
+        expect(PerseidsStatus::Utils.curl('https://www.example.com')).to eq('some error')
+      end
+    end
   end
 
   describe '.write_file!' do
