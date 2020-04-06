@@ -57,14 +57,8 @@
     }
   },
   "morph": {
-    "morph_grk": {
-      "url": "https://morph.perseids.org/analysis/word?lang=grc&engine=morpheusgrc&word=i(stori/hs",
-      "compare": "wc"
-    },
-    "morph_lat": {
-      "url": "https://morph.perseids.org/analysis/word?lang=lat&engine=morpheuslat&word=novarum",
-      "compare": "wc"
-    }
+    "morph_grk": "https://morph.perseids.org/analysis/word?lang=grc&engine=morpheusgrc&word=i(stori/hs",
+    "morph_lat": "https://morph.perseids.org/analysis/word?lang=lat&engine=morpheuslat&word=novarum"
   },
   "other": {
     "arethusa_treebank": "https://www.perseids.org/tools/arethusa/app/#/perseids?chunk=1&doc=57532",
