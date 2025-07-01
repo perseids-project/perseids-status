@@ -6,6 +6,7 @@ group :test, :development do
 end
 
 group :test do
+  gem 'net-smtp'
   gem 'rspec-its'
   gem 'webmock'
 end
