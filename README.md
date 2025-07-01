@@ -19,6 +19,12 @@ See `ruby status --help` for more options.
 
 * `ruby ~2.4.2`
 
+### Development
+
+There is a separate branch called `development` that uses Ruby 3.4 and updated
+dependencies. This is because the production version must run on 2.4.2, but that
+can be difficult run on certain systems.
+
 ## Installation
 
 * `gem install bundler`
